@@ -1,0 +1,54 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel klienta</title>
+</head>
+<body>
+    <h1>Panel klienta</h1>
+
+    <p>
+        Witaj,
+        {{ current_user.imie }} {{ current_user.nazwisko }}!
+    </p>
+
+    <h2>Moje zgłoszenia serwisowe</h2>
+
+    {% if zlecenia %}
+        <table border="1" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>Numer</th>
+                    <th>Tytuł</th>
+                    <th>Sprzęt</th>
+                    <th>Status</th>
+                    <th>Data utworzenia</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for zlecenie in zlecenia %}
+                    <tr>
+                        <td>{{ zlecenie.id }}</td>
+                        <td>{{ zlecenie.tytul }}</td>
+                        <td>{{ zlecenie.sprzet.nazwa }}</td>
+                        <td>{{ zlecenie.status }}</td>
+                        <td>
+                            {{ zlecenie.data_utworzenia.strftime("%Y-%m-%d %H:%M")
+                               if zlecenie.data_utworzenia else "Brak danych" }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nie masz jeszcze żadnych zgłoszeń serwisowych.</p>
+    {% endif %}
+
+    <p>
+        <a href="{{ url_for('logout') }}">Wyloguj się</a>
+    </p>
+</body>
+</html>
+```

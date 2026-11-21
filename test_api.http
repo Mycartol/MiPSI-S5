@@ -1,0 +1,18 @@
+### Logowanie klienta
+POST http://127.0.0.1:5000/login
+Content-Type: application/x-www-form-urlencoded
+
+email=test@test.test&haslo=testtesttest
+
+### Pobieranie zgłoszeń
+GET http://127.0.0.1:5000/api/zlecenia
+
+### Dodawanie zgłoszenia
+POST http://127.0.0.1:5000/api/zlecenia
+Content-Type: application/json
+
+{
+    "tytul": "Awaria laptopa",
+    "opis_problemu": "Laptop Lenovo ThinkPad T480 nie uruchamia się",
+    "sprzet_id": 1
+}
